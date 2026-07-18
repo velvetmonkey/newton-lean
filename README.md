@@ -1,5 +1,6 @@
 # newton-lean
 
+[![thread](https://img.shields.io/badge/%F0%9F%A7%B5-how%20it%20works-1DA1F2)](https://x.com/thevelvetmonke)
 [![Lean 4](https://img.shields.io/badge/Lean-4.28.0-blue)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-v4.28.0-purple)](https://github.com/leanprover-community/mathlib4)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -15,6 +16,14 @@ local doubly exponential convergence bound.
 
 The source is generated from an Aristotle proof run and contains no `sorry` or
 `admit`. It uses the standard Lean axioms only.
+
+## What this is, and why it matters
+
+This library formalizes local quadratic convergence of one-dimensional Newton iteration near a critical point. Its headline theorem, `NewtonSetup.newton_local_convergence`, provides a positive neighborhood in which the error is bounded by `2*delta*(1/2)^(2^k)`.
+
+The proof first establishes a quadratic one-step recurrence. Lipschitz continuity of the second derivative controls the Taylor remainder, while a positive curvature lower bound controls the Newton denominator. Iterating the normalized recurrence raises the initial error to the power `2^k`, which yields the doubly exponential expression.
+
+The hypotheses are strong and global: `f` and `f'` are differentiable everywhere, `f''` is strictly positive and Lipschitz, the target is critical, and `f''(xStar)` globally lower-bounds `f''`. The result is one-dimensional and models exact Newton steps, not line search, damping, approximate Hessians, or numerical error.
 
 ## Mathematical Setting
 
